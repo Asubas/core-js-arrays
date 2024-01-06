@@ -1,5 +1,5 @@
-// function getStringsLength(arr) {
-//   return arr.map((current) => current.length);
+// function getHead(arr, n) {
+//   return arr.slice(-n);
 // }
 
-// console.log(getStringsLength(['angular', 'react', 'ember']));
+// console.log(getHead(['c', 'a', 't'], 0));
