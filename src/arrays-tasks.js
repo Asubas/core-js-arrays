@@ -338,8 +338,11 @@ function selectMany(arr, childrenSelector) {
  *   calculateBalance([ [ 10, 8 ], [ 1, 5 ] ])  => (10 - 8) + (1 - 5) = 2 + -4 = -2
  *   calculateBalance([]) => 0
  */
-function calculateBalance(/* arr */) {
-  throw new Error('Not implemented');
+function calculateBalance(arr) {
+  const sumArr = arr.map((current) => {
+    return current.reduce((previous, element) => previous - element);
+  });
+  return sumArr.reduce((prev, cur) => prev + cur);
 }
 
 /**
@@ -354,8 +357,14 @@ function calculateBalance(/* arr */) {
  *    createChunks(['a', 'b', 'c', 'd', 'e'], 2) => [['a', 'b'], ['c', 'd'], ['e']]
  *    createChunks([10, 20, 30, 40, 50], 1) => [[10], [20], [30], [40], [50]]
  */
-function createChunks(/* arr, chunkSize */) {
-  throw new Error('Not implemented');
+function createChunks(arr, chunkSize) {
+  return Array.from(
+    { length: Math.ceil(arr.length / chunkSize) },
+    (_, index) => {
+      const start = index * chunkSize;
+      return arr.slice(start, chunkSize + start);
+    }
+  );
 }
 
 /**
@@ -370,8 +379,12 @@ function createChunks(/* arr, chunkSize */) {
  *    generateOdds(2) => [ 1, 3 ]
  *    generateOdds(5) => [ 1, 3, 5, 7, 9 ]
  */
-function generateOdds(/* len */) {
-  throw new Error('Not implemented');
+function generateOdds(len) {
+  return Array.from({ length: len }, (current, index) => {
+    let magicNumber = 1;
+    magicNumber += index * 2;
+    return magicNumber;
+  });
 }
 
 /**
@@ -386,8 +399,8 @@ function generateOdds(/* len */) {
  *   getElementByIndices(['one','two','three'], [2]) => 'three'  (arr[2])
  *   getElementByIndices([[[ 1, 2, 3]]], [ 0, 0, 1 ]) => 2        (arr[0][0][1])
  */
-function getElementByIndices(/* arr, indices */) {
-  throw new Error('Not implemented');
+function getElementByIndices(arr, indices) {
+  return indices.reduce((obj, index) => obj[index], arr);
 }
 
 /**
@@ -402,8 +415,13 @@ function getElementByIndices(/* arr, indices */) {
  *  getFalsyValuesCount([ -1, 'false', null, 0 ]) => 2
  *  getFalsyValuesCount([ null, undefined, NaN, false, 0, '' ]) => 6
  */
-function getFalsyValuesCount(/* arr */) {
-  throw new Error('Not implemented');
+function getFalsyValuesCount(arr) {
+  return arr.reduce((count, current) => {
+    if (!current) {
+      return count + 1;
+    }
+    return count;
+  }, 0);
 }
 
 /**
@@ -424,8 +442,19 @@ function getFalsyValuesCount(/* arr */) {
  *                              [0,0,0,1,0],
  *                              [0,0,0,0,1]]
  */
-function getIdentityMatrix(/* n */) {
-  throw new Error('Not implemented');
+function getIdentityMatrix(n) {
+  return Array.from({ length: n }, (current, index) => {
+    return Array.from(
+      { length: n },
+      (element, indexTwo) => {
+        if (indexTwo === index) {
+          return 1;
+        }
+        return 0;
+      },
+      0
+    );
+  });
 }
 
 /**
@@ -439,8 +468,13 @@ function getIdentityMatrix(/* n */) {
  *    getIndicesOfOddNumbers([2, 4, 6, 8, 10]) => []
  *    getIndicesOfOddNumbers([11, 22, 33, 44, 55]) => [0, 2, 4]
  */
-function getIndicesOfOddNumbers(/* numbers */) {
-  throw new Error('Not implemented');
+function getIndicesOfOddNumbers(numbers) {
+  return numbers.reduce((acc, current, index) => {
+    if (current % 2 !== 0) {
+      acc.push(index);
+    }
+    return acc;
+  }, []);
 }
 
 /**
@@ -453,8 +487,10 @@ function getIndicesOfOddNumbers(/* numbers */) {
  *    getHexRGBValues([ 0, 255, 16777215]) => [ '#000000', '#0000FF', '#FFFFFF' ]
  *    getHexRGBValues([]) => []
  */
-function getHexRGBValues(/* arr */) {
-  throw new Error('Not implemented');
+function getHexRGBValues(arr) {
+  return arr.map((current) => {
+    return `#${current.toString(16).padStart(6, 0).toUpperCase()}`;
+  });
 }
 
 /**
