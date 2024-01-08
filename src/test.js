@@ -1,13 +1,17 @@
-// //  return [...new Set(arr)];
-
-// function findCommonElements(arr1, arr2) {
-// //   const newArr = arr1.concat(arr2);
-//   return arr1.reduce((acc, current) => {
-//     if (arr2.includes(current)) {
-//       acc.push(current);
+// function findLongestIncreasingSubsequence(nums) {
+//   let maxLength = 1;
+//   let currentLength = 1;
+//   return nums.reduce((acc, current, index) => {
+//     if (current < nums[index + 1]) {
+//       currentLength += 1;
+//       maxLength = Math.max(maxLength, currentLength);
+//     } else {
+//       currentLength = 1;
 //     }
-//     return acc;
-//   }, []);
+//     return maxLength;
+//   }, 0);
 // }
 
-// console.log(findCommonElements(['a', 'b', 'c'], ['b', 'c', 'd']));
+// console.log(
+//   findLongestIncreasingSubsequence([41, 60, 80, 10, 22, 9, 33, 21, 50])
+// );

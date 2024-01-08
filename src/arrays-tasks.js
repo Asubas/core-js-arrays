@@ -546,8 +546,18 @@ function findCommonElements(arr1, arr2) {
  *    findLongestIncreasingSubsequence([3, 10, 2, 1, 20]) => 2
  *    findLongestIncreasingSubsequence([50, 3, 10, 7, 40, 80]) => 3
  */
-function findLongestIncreasingSubsequence(/* nums */) {
-  throw new Error('Not implemented');
+function findLongestIncreasingSubsequence(nums) {
+  let maxLength = 1;
+  let currentLength = 1;
+  return nums.reduce((acc, current, index) => {
+    if (current < nums[index + 1]) {
+      currentLength += 1;
+      maxLength = Math.max(maxLength, currentLength);
+    } else {
+      currentLength = 1;
+    }
+    return maxLength;
+  }, 0);
 }
 
 /**
